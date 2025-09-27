@@ -31,8 +31,8 @@ app.get('/api/search', async function(req, res){
     );
 
 // Send data from external api back to our react client
-    res.json(apiResponse.data);
-    } catch (errro){
+    res.json(tmdbResponse.data);
+    } catch (error){
         console.error("Error fetching from TMDB API:" , error.message);
         res.status(500).json({ message: "An error occured while fetching data,"});
     }

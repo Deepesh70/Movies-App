@@ -25,7 +25,8 @@ function App() {
       });
       setMovies(response.data.results);
     } catch(err){
-      setError('Failed to fetch Movies. Please try again.',err);
+      setError('Failed to fetch Movies. Please try again.');
+      console.log(err);
 
     }finally{
       setLoading(false);
@@ -45,11 +46,11 @@ function App() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder='Search a Movie...'
-            className='w-full max-w-md p-3 rounded-l-lg bg-gray-800 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400'
+            className='w-full max-w-md p-3 rounded-l-lg bg-gray-800 border border-gray-700 focus:outline-none focus:ring-1 focus:ring-yellow-400'
           />
           <button 
           type='submit'
-          className='bg-yellow-400 text-gray-900 font-bold p-3 rounded-r-lg hover:bg-yellow-500 transition-colors'
+          className='bg-yellow-400 text-gray-900 font-bold p-3 rounded-r-lg hover:bg-yellow-500 transition-colors cursor-pointer'
           >
             Search
           </button>
@@ -58,7 +59,7 @@ function App() {
         {loading && <p className='text-center'>Loading...</p>}
         {error && <p className='text-center text-red-500'> {error}</p>}
 
-        <div className='grid grid-cols-1 sm:grid-cols02 md:grid-cols-3 lg:grid-cols-4 gap-8'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8'>
           {movies.map((movie) => (
             <MovieCard key={movie.id} movie= {movie}/>
           ))}
