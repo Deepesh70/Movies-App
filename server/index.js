@@ -30,6 +30,24 @@ app.get('/api/search', async function(req, res){
         }
     );
 
+
+app.get('/api/movie/:id' , async function(req, res){
+    try{
+        const { id } = req.params;  //get movei id from url
+
+        const tmdbResponse = await axios.get(
+            `https://api.themoviedb.org/3/movie/${id}`, {
+                params:{
+                    api_key : proccess.env.TMDB_API_KEY,
+                },
+            }
+        );
+
+        res.json(tmdbResponse.data);
+    }
+})
+
+    
 // Send data from external api back to our react client
     res.json(tmdbResponse.data);
     } catch (error){
