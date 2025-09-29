@@ -44,8 +44,12 @@ app.get('/api/movie/:id' , async function(req, res){
         );
 
         res.json(tmdbResponse.data);
+    } catch(error){
+        console.error("Error fetching movie details from TMDB.", error.message);
+        res.status(500).json( {message: "Error fetching movie details." });
+
     }
-})
+});
 
     
 // Send data from external api back to our react client
