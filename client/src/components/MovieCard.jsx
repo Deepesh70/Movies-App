@@ -1,7 +1,10 @@
+import { Link } from 'react-router-dom';
+
 const MovieCard = ({ movie }) => {
     const posterUrl = movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`: `https://via.placeholder.com/500x750?text=No+Image`;
 
     return(
+        <Link to={`/movie/${movie.id}`}>
         <div className="bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 cursor-pointer">
             <img src={ posterUrl } alt={ `${movie.title} poster`} className="w-full h-auto"/>
             <div className="p-4 ">
@@ -9,6 +12,7 @@ const MovieCard = ({ movie }) => {
             <p className="text-gray-400">Release Date: {movie.release_date}</p>
             </div>
         </div>
+        </Link>
     );
 };
 
