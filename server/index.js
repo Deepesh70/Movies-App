@@ -38,7 +38,7 @@ app.get('/api/movie/:id' , async function(req, res){
         const tmdbResponse = await axios.get(
             `https://api.themoviedb.org/3/movie/${id}`, {
                 params:{
-                    api_key : proccess.env.TMDB_API_KEY,
+                    api_key : process.env.TMDB_API_KEY,
                 },
             }
         );
