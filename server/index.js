@@ -31,26 +31,36 @@ app.get('/api/search', async function(req, res){
     );
 
 
-app.get('/api/movie/:id' , async function(req, res){
-    try{
-        const { id } = req.params;  //get movei id from url
+app.get('/api/movie/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
 
-        const tmdbResponse = await axios.get(
-            `https://api.themoviedb.org/3/movie/${id}`, {
-                params:{
-                    api_key : process.env.TMDB_API_KEY,
-                },
-            }
-        );
+    // Create two requests to the TMDB API
+    const detailsRequest = axios.get(`https://api.themoviedb.org/3/movie/${id}`, {
+      params: { api_key: process.env.TMDB_API_KEY },
+    });
+    const providersRequest = axios.get(`https://api.themoviedb.org/3/movie/${id}/watch/providers`, {
+      params: { api_key: process.env.TMDB_API_KEY },
+    });
 
-        res.json(tmdbResponse.data);
-    } catch(error){
-        console.error("Error fetching movie details from TMDB.", error.message);
-        res.status(500).json( {message: "Error fetching movie details." });
+    // Run both requests at the same time for better performance
+    const [detailsResponse, providersResponse] = await Promise.all([
+      detailsRequest,
+      providersRequest,
+    ]);
 
-    }
+    // Combine the data from both responses into a single object
+    const combinedData = {
+      ...detailsResponse.data,
+      'watch/providers': providersResponse.data, // Add providers under a key
+    };
+
+    res.json(combinedData);
+  } catch (error) {
+    console.error("Error fetching movie details from TMDB:", error.message);
+    res.status(500).json({ message: "Error fetching movie details." });
+  }
 });
-
     
 // Send data from external api back to our react client
     res.json(tmdbResponse.data);
