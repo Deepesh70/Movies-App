@@ -43,9 +43,9 @@ function MovieDetailPage() {
     <div className='container mx-auto px-4 py-8'>
       <Link to="/" className='text-yellow-400 hover:text-yellow-500 mb-8 inline-block '>&larr;Back to Search</Link>
       <div className='flex flex-col md:flex-row gap-8'>
-        <img src={posterUrl} alt={`${movie.title} poster`} className="w-full md:w-1/3 rounded-lg shadow-lg" />
+        <img src={posterUrl} alt={`${movie.title} poster`} className="w-full md:w-1/3 rounded-lg shadow-lg" />  {/* Movie poster */}
         <div className="md:w-2/3">
-          <h1 className="text-4xl font-bold mb-4">{movie.title}</h1>
+          <h1 className="text-4xl font-bold mb-4">{movie.title}</h1>  // Movie title
           <p className="text-lg text-gray-300 mb-6">{movie.overview}</p>
           <p className="text-gray-400"><strong>Release Date:</strong> {movie.release_date}</p>
           <p className="text-gray-400"><strong>Rating:</strong> {movie.vote_average.toFixed(1)} / 10</p>
