@@ -55,10 +55,10 @@ function MovieDetailPage() {
             <div className="mt-6">
               <h2 className="text-2xl font-semibold mb-3">Available on:</h2>
               <div className="flex flex-wrap gap-4 items-center">
-                {watchProviders.map((provider) => (
+                {watchProviders.map((provider) => (   // Map through each provider
                   <div key={provider.provider_id} className="bg-gray-800 p-2 rounded-lg">
                     <img
-                      src={`https://image.tmdb.org/t/p/w200${provider.logo_path}`}
+                      src={`https://image.tmdb.org/t/p/w200${provider.logo_path}`}  // Provider logo
                       alt={provider.provider_name}
                       title={provider.provider_name}
                       className="w-12 h-12 rounded-md"
